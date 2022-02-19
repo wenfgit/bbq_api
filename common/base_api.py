@@ -1,10 +1,14 @@
 import os
+import allure
 import requests
+from jsonpath import jsonpath
 
 from utils.handle_assert import HandleAssert
 from utils.log_util import log
 from utils.ymal_util import YamlUtil
 from utils import myallure
+
+from common.utils import Utils
 from conf.conf_path import CONF_DIR
 
 class BaseApi(object):
@@ -14,7 +18,7 @@ class BaseApi(object):
     host = conf_data['env']['host']
     headers = conf_data['request_headers']['headers']
     account = conf_data['account']
-    investor_account = conf_data['investor_account']
+    # investor_account = conf_data['investor_account']
     mysql_conf = conf_data['mysql']
 
     def send_http(self, data: dict):
@@ -44,26 +48,26 @@ class BaseApi(object):
     #     """
     #     return YamlUtil(file_name).read()
 
-    # @staticmethod
-    # def get_token(response):
-    #     """
-    #     处理并提取token
-    #     :param response:
-    #     :return:
-    #     """
-    #     return Utils.handle_token(response)
+    @staticmethod
+    def get_token(response):
+        """
+        处理并提取token
+        :param response:
+        :return:
+        """
+        return Utils.handle_token(response)
 
-    # @staticmethod
-    # @allure.step('step:数据替换')
-    # def template(source_data: str, data: dict):
-    #     """
-    #     替换数据
-    #     :param source_data: 源数据
-    #     :param data: 替换内容，如{data:new_data}
-    #     :return:
-    #     """
-    #
-    #     return Utils.handle_template(source_data, data)
+    @staticmethod
+    @allure.step('step:数据替换')
+    def template(source_data: str, data: dict):
+        """
+        替换数据
+        :param source_data: 源数据
+        :param data: 替换内容，如{data:new_data}
+        :return:
+        """
+
+        return Utils.handle_template(source_data, data)
 
     # @staticmethod
     # def to_two_decimal(data):
@@ -74,13 +78,21 @@ class BaseApi(object):
     #     """
     #     return Utils.handle_decimal(data)
 
-    # @staticmethod
-    # def random_phone():
-    #     """
-    #     生成随机手机号
-    #     :return:
-    #     """
-    #     return Utils.handle_random_phone()
+    @staticmethod
+    def random_phone():
+        """
+        生成随机手机号
+        :return:
+        """
+        return Utils.handle_random_phone()
+
+    @staticmethod
+    def random_email():
+        """
+        生成随机邮箱
+        :return:
+        """
+        return Utils.handle_random_email()
 
     @staticmethod
     def __api_log(method, url, headers=None, params=None, json=None):

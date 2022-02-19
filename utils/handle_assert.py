@@ -33,17 +33,3 @@ class HandleAssert:
         except AssertionError as e:
             log.error(f"contains断言失败，目标文本{target}包含 文本{content}")
             raise e
-
-    @staticmethod
-    def data_type(expect, actual):
-        """
-        断言数据类型
-        :param expect: 期望数据类型
-        :param actual: 实际数据
-        :return:
-        """
-        try:
-            assert isinstance(expect,actual)
-        except AssertionError as e:
-            log.error(f"data_type断言失败，{actual}不是{expect}数据")
-            raise e

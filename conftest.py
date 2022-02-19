@@ -1,16 +1,16 @@
 import pytest
 from utils.log_util import log
-from apis.api_member.member_api import MemberApi
+from apis.api_excuse.user_api import UserApi
 # from common.handle_mysql import HandleMysql
 #
 # # ma = MemberApi()
 #
 #
-# @pytest.fixture(scope='class')
-# def get_login_data():
-#     """获取登录数据"""
-#     data = MemberApi().get_login_data()
-#     return data
+@pytest.fixture(scope='class')
+def get_login_data():
+    """获取登录数据"""
+    data = UserApi().get_login_data()
+    return data
 
 
 # @pytest.fixture(scope='class')
