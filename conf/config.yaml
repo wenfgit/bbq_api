@@ -1,0 +1,32 @@
+env:
+  host: 'http://bbtest2.com/excuse'
+
+request_headers:
+  headers: { 'client-info': 'ios#14#iphone#udid12', 'access-token': 'xxxxxxxxx' }
+
+account:
+  phoneAndEmail: '13333333333'
+  password: 'Carl123_'
+
+log_out_user:
+  phoneAndEmail: '16633333333'
+  password: 'Carl123_'
+
+mysql:
+  host: 'api.lemonban.com'
+  user: 'future'
+  password: '123456'
+  port: 3306
+
+user_api:
+  login: '/user/login'
+  register: '/user/register'
+  automaticLogin: '/user/automaticLogin'
+  loginOut: '/user/loginOut'
+  sendSms: '/member/sendSms'
+  invest: '/member/invest'
+
+loan_api:
+  add: '/loan/add'
+  audit: '/loan/audit'
+  loan_list: '/loans'

@@ -122,6 +122,3 @@ class BaseApi(object):
         """
         return HandleAssert.contains(content, target)
 
-if __name__ == '__main__':
-    a = BaseApi()
-    # a.template()

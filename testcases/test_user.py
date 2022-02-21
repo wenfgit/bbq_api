@@ -44,3 +44,13 @@ class TestMember(UserCase):
         self.assert_equal(data['expected']['codeMsg'], result['codeMsg'])
         log.info('用例通过！')
 
+    @allure.story('退出登陆')
+    @allure.title('{data[title]}')
+    @pytest.mark.parametrize('data', datas['loginOut'])
+    def test_oginOut(self, data):
+        """退出登陆功能验证"""
+
+        result = self.case_loginOut(data['header'])
+        self.assert_equal(data['expected']['code'], result['code'])
+        self.assert_equal(data['expected']['codeMsg'], result['codeMsg'])
+        log.info('用例通过！')

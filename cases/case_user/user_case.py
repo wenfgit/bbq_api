@@ -30,7 +30,20 @@ class UserCase(UserApi):
         :param data:
         :return:
         """
-        if data['access-token'] == '$access-token':
-            data = self.template(data, {'access-token': self.get_login_data()})
-        res = self.automaticLogin_api(**data).json()
+        if data['access-token'] == '$token':
+            data = self.template(data, self.get_login_data())
+        res = self.automaticLogin_api(data).json()
+        return res
+
+    @allure.step('step:调用业务api-退出登陆')
+    def case_loginOut(self, data):
+        """
+        退出登陆业务场景
+        :param data:
+        :return:
+        """
+        user_data = UserApi().conf_data['log_out_user']
+        if data['access-token'] == '$token':
+            data = self.template(data, self.get_login_data(**user_data))
+        res = self.loginOut_api(data).json()
         return res

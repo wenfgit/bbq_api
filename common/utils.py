@@ -31,7 +31,7 @@ class Utils:
         :return:
         """
         header = {}
-        header['access-token'] = jsonpath(response.json(), '$.token')[0]
+        header['token'] = jsonpath(response.json(), '$..token')[0]
         return header
 
     @classmethod

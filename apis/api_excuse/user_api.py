@@ -25,8 +25,7 @@ class UserApi(BaseApi):
                 'password': password
             }
         }
-        response = self.send_http(data)
-        return response
+        return self.send_http(data)
 
     @allure.step('step:调用获取登录结果api')
     def get_login_data(self, phoneAndEmail=BaseApi().account['phoneAndEmail'], password=BaseApi().account['password']):
@@ -35,10 +34,7 @@ class UserApi(BaseApi):
         :return:
         """
         response = self.login_api(phoneAndEmail, password)
-        res = response.json()
-        login_data = dict()
-        login_data['token'] = self.get_token(response)
-        return login_data
+        return self.get_token(response)
 
     @api_call
     def register_api(self, phoneAndEmail: str, password: str):
@@ -58,8 +54,7 @@ class UserApi(BaseApi):
                 'password': password,
             }
         }
-        response = self.send_http(data)
-        return response
+        return self.send_http(data)
 
     @api_call
     def automaticLogin_api(self, header):
@@ -67,11 +62,48 @@ class UserApi(BaseApi):
         通过token自动登陆接口
         :return:
         """
+
         api = self.conf_data['user_api']['automaticLogin']
+        self.headers.update(header)
         data = {
             'url': self.host + api,
             'method': 'post',
-            'headers': self.headers.update(header)
+            'headers': self.headers
         }
-        response = self.send_http(data)
-        return response
+        return self.send_http(data)
+
+    @api_call
+    def loginOut_api(self,header):
+        """
+        通过token退出登陆
+        :param header:
+        :return:
+        """
+
+        api = self.conf_data['user_api']['loginOut']
+        self.headers.update(header)
+        data = {
+            'url': self.host + api,
+            'method': 'post',
+            'headers': self.headers
+        }
+        return self.send_http(data)
+
+    @api_call
+    def sendSms_api(self, phoneAndEmail: str):
+        """
+        发送验证码
+        :param header:
+        :return:
+        """
+
+        api = self.conf_data['user_api']['sendSms']
+        data = {
+            'url': self.host + api,
+            'method': 'post',
+            'json': {
+                'phoneAndEmail': phoneAndEmail,
+                'type': 0
+            }
+        }
+        return self.send_http(data)
