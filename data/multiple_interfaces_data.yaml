@@ -1,28 +1,29 @@
-add_loan:
-  - title: '确认添加贷款项目成功'
-    json:
-      member_id: $member_id
-      title: '拯救银河系'
-      amount: 50000
-      loan_rate: 10.0
-      loan_term: 6
-      loan_date_type: 1
-      bidding_days: 10
-    expected: {"code":0,"msg":"OK"}
-    sql: "SELECT * FROM  futureloan.loan WHERE member_id=$member_id;"
+register_and_login:
+  - title: '手机号注册并登陆成功'
+    account:
+      'password': 'Carl123_'
+      'phoneAndEmail': '$phones'
+    'expected': { "code": 1001, "codeMsg": "请求成功" }
 
-#  - title: '验证借款人id为空加标失败'
-#    json:
-#      member_id: ''
-#      title: '拯救银河系'
-#      amount: 50000
-#      loan_rate: 10.0
-#      loan_term: 6
-#      loan_date_type: 1
-#      bidding_days: 10
-#    expected: {"code":1,"msg":"用户id为空"}
-#    sql: ''
-#
+  - title: '邮箱注册并登陆成功'
+    account:
+      'password': 'Carl123_'
+      'phoneAndEmail': '$emails'
+    'expected': { "code": 1001, "codeMsg": "请求成功" }
+
+login_and_automaticLogin:
+  - title: '邮箱账号登陆成功，使用token自动登陆成功'
+    account:
+      'password': 'Carl123_'
+      'phoneAndEmail': 'kdu@yahoo.com'
+    'expected': { "code": 1001, "codeMsg": "请求成功" }
+
+  - title: '手机账号登陆成功，使用token自动登陆成功'
+    account:
+      'password': 'Carl123_'
+      'phoneAndEmail': '13333333333'
+    'expected': { "code": 1001, "codeMsg": "请求成功" }
+
 #  - title: '验证标题为空加标失败'
 #    json:
 #      member_id: $member_id

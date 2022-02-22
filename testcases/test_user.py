@@ -11,7 +11,7 @@ case_data_path = os.path.join(DATA_DIR, 'user_case_data.yaml')
 datas = YamlUtil(case_data_path).read()
 
 @allure.feature('用户')
-class TestMember(UserCase):
+class TestUser(UserCase):
     # conf_mysql = MemberCase().mysql_conf
 
     @allure.story('登录')

@@ -1,5 +1,4 @@
 import allure
-from jsonpath import jsonpath
 
 from common.base_api import BaseApi
 from utils.wrappers import api_call
